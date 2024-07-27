@@ -16,7 +16,9 @@
 .nav-logo p {
     color: #171717;
     font-size: 38px;
+    font-style: italic;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .nav-menu {

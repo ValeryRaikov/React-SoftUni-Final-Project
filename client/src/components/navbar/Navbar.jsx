@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import cart_icon from '../assets/cart_icon.png';
-import { useState } from 'react';
 
 export default function Navbar() {
     const [menu, setMenu] = useState('shop');
@@ -9,29 +11,40 @@ export default function Navbar() {
     return (
          <div className='navbar'>
             <div className='nav-logo'>
-                <img src={logo} alt="" />
-                <p>Shopify</p>
+                <Link style={{textDecoration: 'none'}} to='/'>
+                    <img src={logo} alt="" />
+                </Link>
+                    <p>Shopify</p>
             </div>
             <ul className='nav-menu'>
                 <li onClick={() => setMenu('shop')}>
-                    Shop{menu === 'shop' ? <hr /> : <></>}
+                    <Link style={{textDecoration: 'none'}} to='/'>Shop</Link>
+                    {menu === 'shop' ? <hr /> : <></>}
                 </li>
                 <li onClick={() => setMenu('men')}>
-                    Men{menu === 'men' ? <hr /> : <></>}
+                    <Link style={{textDecoration: 'none'}} to='/men'>Men</Link>
+                    {menu === 'men' ? <hr /> : <></>}
                 </li>
                 <li onClick={() => setMenu('women')}>
-                    Women{menu === 'women' ? <hr /> : <></>}
+                    <Link style={{textDecoration: 'none'}} to='/women'>Women</Link>
+                    {menu === 'women' ? <hr /> : <></>}
                 </li>
                 <li onClick={() => setMenu('kids')}>
-                    Kids{menu === 'kids' ? <hr /> : <></>}
+                    <Link style={{textDecoration: 'none'}} to='/kids'>Kids</Link>
+                    {menu === 'kids' ? <hr /> : <></>}
                 </li>
             </ul>
             <div className="nav-login-cart">
                 <li onClick={() => setMenu('about')}>
-                    About{menu === 'about' ? <hr /> : <></>}
+                    <Link style={{textDecoration: 'none'}} to='/about'>About</Link>
+                    {menu === 'about' ? <hr /> : <></>}
                 </li>
-                <button>Login</button>
-                <img src={cart_icon} alt="" />
+                <Link to='/login'>
+                    <button>Login</button>
+                </Link>
+                <Link to='/cart'>
+                    <img src={cart_icon} alt="" />
+                </Link>
                 <div className="nav-cart-count">0</div>
             </div>
          </div>
