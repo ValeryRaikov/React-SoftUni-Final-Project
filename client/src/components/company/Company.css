@@ -1,9 +1,66 @@
 @import url('/styles/base.css');
 
 .company {
-    margin-left: 250px;
+    margin: 40px;
 }
 
-.company-description {
+.company-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
 
+.company-header img {
+    width: 80px;
+    height: 90px;
+}
+
+.company-header h2 {
+    font-size: 50px;
+    font-weight: 500;
+    color: #3e3e3e;
+}
+
+.company-description p:first-of-type {
+    font-size: 22px;
+    text-indent: 30px;
+    padding-bottom: 25px;
+}
+
+.company-description h3 {
+    font-size: 38px;
+    font-weight: 500;
+    color: #3e3e3e;
+    padding-bottom: 10px;
+}
+
+.company-description p {
+    font-size: 18px;
+    text-indent: 25px;
+    padding-bottom: 25px;
+}
+
+.company-list-display {
+    padding-left: 25px;
+    padding-bottom: 20px;
+}
+
+.company-list-display li {
+    font-size: 18px;
+    padding-bottom: 6px;
+}
+
+.company-list-display li span {
+    font-size: 20px;
+    font-weight: 600;
+    padding-right: 8px;
+}
+
+.company-description p:last-of-type {
+    font-size: 25px;
+    font-weight: 600;
+    color: #3e3e3e;
+    text-indent: 0;
 }
