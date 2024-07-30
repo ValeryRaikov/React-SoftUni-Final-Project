@@ -30,11 +30,15 @@ export default function ProductsAbout() {
                     </div>
                 </div>
             </div>
-            <h2>Shop Now</h2>
-            <div className="shop-buttons">
-                <li><Link to='men'>Men</Link></li>
-                <li><Link to='women'>Women</Link></li>
-                <li><Link to='kids'>Kids</Link></li>
+            <div className="products-about-shop">
+                <h2>Shop Now</h2>
+                <div className="shop-links">
+                    <ul>
+                        <li><Link to='/men'>Men</Link></li>
+                        <li><Link to='/women'>Women</Link></li>
+                        <li><Link to='/kids'>Kids</Link></li>
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import './Footer.css';
 import footer_logo from '../assets/logo_big.png';
 import instagram_icon from '../assets/instagram_icon.png';
@@ -5,6 +7,8 @@ import pinterest_icon from '../assets/pinterest_icon.png';
 import whatsapp_icon from '../assets/whatsapp_icon.png';
 
 export default function Footer() {
+    const navigate = useNavigate();
+
     return (
         <div className="footer">
             <div className="footer-logo">
@@ -12,11 +16,11 @@ export default function Footer() {
                 <p>Shopify</p>
             </div>
             <ul className="footer-links">
-                <li>Company</li>
-                <li>Products</li>
-                <li>Ofices</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li onClick={() => navigate('/about/company')}>Company</li>
+                <li onClick={() => navigate('/about/products')}>Products</li>
+                <li onClick={() => navigate('/about/offices')}>Offices</li>
+                <li onClick={() => navigate('/about/about-us')}>About Us</li>
+                <li onClick={() => navigate('/about/contact')}>Contact</li>
             </ul>
             <div className="footer-socials-icons">
                 <div className="footer-icons-container">

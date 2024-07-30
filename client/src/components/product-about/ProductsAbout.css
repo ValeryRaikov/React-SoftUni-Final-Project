@@ -22,6 +22,7 @@
     justify-content: space-between;
     gap: 25px;
     padding: 40px;
+    margin-bottom: 25px;
     background: radial-gradient(circle at 5.3% 17.2%, rgb(255, 208, 253) 0%, rgb(255, 237, 216) 90%);
 }
 
@@ -48,4 +49,40 @@
 .gallery-right .down img {
     height: 242px;
     border: 1px solid #ccc;
+}
+
+.products-about-shop {
+    text-align: center;
+}
+
+.shop-links {
+    padding: 0;
+    margin: 20px 0;
+    text-align: center; 
+}
+
+.shop-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    justify-content: center; 
+    gap: 30px; 
+}
+
+.shop-links li {
+    list-style: none; 
+    font-size: 22px;
+    font-weight: 500;
+    color: #551a8b;
+}
+
+.shop-links a {
+    text-decoration: none; 
+    color: #551a8b; 
+    transition: color 0.3s ease; 
+}
+
+.shop-links a:hover {
+    color: #250a3e; 
 }
