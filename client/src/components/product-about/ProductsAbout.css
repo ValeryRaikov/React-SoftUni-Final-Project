@@ -1,0 +1,51 @@
+@import url('/styles/base.css');
+
+.products-about {
+    margin: 40px;
+}
+
+.products-about h2 {
+    font-size: 50px;
+    font-weight: 500;
+    color: #3e3e3e;
+}
+
+.products-about p {
+    font-size: 18px;
+    text-indent: 25px;
+    padding-bottom: 25px;
+}
+
+.products-about-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 40px;
+    background: radial-gradient(circle at 5.3% 17.2%, rgb(255, 208, 253) 0%, rgb(255, 237, 216) 90%);
+}
+
+.products-about-gallery img {
+    height: 500px;
+    border: 1px solid #ccc;
+}
+
+.gallery-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery-right .up,
+.gallery-right .down {
+    display: flex;
+    gap: 15px;
+}
+
+.gallery-right .up img,
+.gallery-right .down img {
+    height: 242px;
+    border: 1px solid #ccc;
+}
