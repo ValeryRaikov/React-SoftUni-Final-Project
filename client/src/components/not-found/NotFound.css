@@ -1,0 +1,38 @@
+@import url('/styles/base.css');
+
+.not-found-box {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.not-found-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.not-found-box h3 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.not-found-box button {
+    width: 260px;
+    height: 55px;
+    outline: none;
+    border: none;
+    background-color: #ff4141;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.not-found hr {
+    width: 100%;
+    margin-bottom: 40px;
+}

@@ -11,6 +11,7 @@ import Footer from './components/footer/Footer';
 import men_banner from './components/assets/banner_men.png';
 import women_banner from './components/assets/banner_women.png';
 import kids_banner from './components/assets/banner_kids.png';
+import NotFound from './components/not-found/NotFound';
 
 function App() {
      return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/about' element={<About />} />
                 <Route path='/login' element={<Registration /> } />
                 <Route path='/cart' element={<Cart /> } />
+                <Route path='/*' element={<NotFound />}  />
             </Routes>
 
             <Footer />
