@@ -1,14 +1,18 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import cart_icon from '../assets/cart_icon.png';
 import { ShopContext } from '../../context/ShopContext';
+import About from '../about/About';
 
 export default function Navbar() {
     const [menu, setMenu] = useState('shop');
     const { getTotalCartItems } = useContext(ShopContext);
+    const location = useLocation();
+
+    const isAboutPage = location.pathname === '/about';
 
     return (
          <div className='navbar'>
@@ -49,6 +53,7 @@ export default function Navbar() {
                 </Link>
                 <div className="nav-cart-count">{getTotalCartItems()}</div>
             </div>
+            {isAboutPage && <About />}
          </div>
     );
 }

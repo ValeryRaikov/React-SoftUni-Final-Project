@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Navbar from './components/navbar/Navbar';
 import Shop from './components/shop/Shop';
@@ -14,6 +14,9 @@ import kids_banner from './components/assets/banner_kids.png';
 import NotFound from './components/not-found/NotFound';
 
 function App() {
+    const location = useLocation();
+    const isAboutPage = location.pathname.startsWith('/about');
+
      return (
         <>
             <Navbar />
@@ -26,13 +29,19 @@ function App() {
                 <Route path='/product' element={<Product />}>
                     <Route path=':productId' element={<Product />} />
                 </Route>
-                <Route path='/about' element={<About />} />
+                <Route path='/about' element={<About />} >
+                    <Route path='company' element={<Cart /> } />
+                    <Route path='products' element={<Cart /> } />
+                    <Route path='offices' element={<Cart /> } />
+                    <Route path='about-us' element={<Cart /> } />
+                    <Route path='contact' element={<Cart /> } />
+                </Route>
                 <Route path='/login' element={<Registration /> } />
                 <Route path='/cart' element={<Cart /> } />
-                <Route path='/*' element={<NotFound />}  />
+                <Route path='/*' element={<NotFound />} />
             </Routes>
 
-            <Footer />
+            {!isAboutPage && <Footer />}
         </>
     )
 }

@@ -1,0 +1,37 @@
+@import url('/styles/base.css');
+
+.about-sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 30px;
+    margin-top: 112px;
+    border-right: 2px solid #ccc;
+}
+
+.about-sidenav span,
+.about-sidenav a {
+    display: block;
+    padding: 10px 16px;
+    list-style: none;
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: 500;
+    color: #551a8b;
+}
+
+.about-sidenav span:hover,
+.about-sidenav a:hover {
+    color: #250a3e;
+    transition: 0.3s ease-in-out;
+}
+
+.about-sidenav .active a {
+    color: #250a3e;
+    font-size: 28px;
+    font-weight: 600;
+}

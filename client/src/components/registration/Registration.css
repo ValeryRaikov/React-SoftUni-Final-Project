@@ -3,7 +3,7 @@
 .registration {
     width: 100%;
     height: 800px;
-    background-color: #fce3fe;
+    background: radial-gradient(circle at 5.3% 17.2%, rgb(255, 208, 253) 0%, rgb(255, 237, 216) 90%);
     padding-top: 100px;
 }
 
