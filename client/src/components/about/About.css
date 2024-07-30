@@ -1,5 +1,9 @@
 @import url('/styles/base.css');
 
+.about {
+    display: flex;
+}
+
 .about-sidenav {
     height: 100%;
     width: 250px;
@@ -34,4 +38,58 @@
     color: #250a3e;
     font-size: 28px;
     font-weight: 600;
+}
+
+.about-content-container {
+    margin-left: 250px;
+}
+
+.about-content h1 {
+    padding-top: 40px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 500;
+    color: #3e3e3e;
+    text-transform: uppercase;
+}
+
+.about-content-description {
+    margin: 30px 50px;
+    padding: 30px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    border: 2px solid #ccc;
+}
+
+.about-text p:first-child {
+    font-size: 30px;
+    padding-bottom: 6px;
+}
+
+.about-text p:last-child {
+    font-size: 24px;
+}
+
+.about-text span {
+    font-weight: 600;
+}
+
+.about-btn {
+    text-align: center;
+}
+
+.about-btn button {
+    margin-top: 20px;
+    width: 260px;
+    height: 70px;
+    outline: none;
+    border: none;
+    background-color: #ff4141;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
 }
