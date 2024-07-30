@@ -93,6 +93,7 @@
     border: none;
     outline: none;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .display-right-category {
