@@ -1,0 +1,23 @@
+@import url('/styles/base.css');
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    gap: 20px;
+    width: 100%;
+    max-width: 250px;
+    height: 100vh;
+    background-color: #ededed;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+}
