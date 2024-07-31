@@ -1,3 +1,47 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 @import url('/styles/base.css');
 
+.contact {
+    margin: 40px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #ccc;
+}
+
+.contact h2 {
+    font-size: 50px;
+    font-weight: 500;
+    color: #3e3e3e;
+    padding-bottom: 15px;
+}
+
+.contact p {
+    font-size: 28px;
+}
+
+.contact-email,
+.contact-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding-bottom: 20px;
+}
+
+.contact-email i,
+.contact-phone i {
+    font-size: 44px;
+}
+
+.contact-email i {
+    color: #ff0000;
+}
+
+.contact-phone i {
+    color: #11b10c;
+}
+
+.contact-socials-icons img {
+    padding: 20px;
+    height: 80px;
+}

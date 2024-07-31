@@ -1,0 +1,30 @@
+@import url('/styles/base.css');
+
+.about-us {
+    padding: 40px;
+    background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
+}
+
+.about-us h2 {
+    font-size: 50px;
+    font-weight: 500;
+    color: #3e3e3e;
+    text-align: center;
+}
+
+.about-us-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.container-description p {
+    font-size: 20px;
+    text-indent: 25px;
+    padding-bottom: 25px;
+}
+
+.container-description p:last-of-type {
+    font-size: 25px;
+    font-weight: 600;
+}

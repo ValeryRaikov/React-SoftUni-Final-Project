@@ -1,0 +1,52 @@
+@import url('/styles/base.css');
+
+.offices {
+    margin: 40px;
+}
+
+.offices h2 {
+    font-size: 50px;
+    font-weight: 500;
+    color: #3e3e3e;
+}
+
+.offices h3 {
+    font-size: 38px;
+    font-weight: 500;
+    color: #3e3e3e;
+    padding-bottom: 10px;
+}
+
+.offices-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.locations {
+    padding-bottom: 25px;
+}
+
+.locations ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.locations li {
+    list-style: none; 
+    font-size: 22px;
+    font-weight: 500;
+    color: #551a8b;
+}
+
+.locations a {
+    text-decoration: none; 
+    color: #551a8b; 
+    transition: color 0.3s ease; 
+}
+
+.locations a:hover {
+    color: #250a3e; 
+}
