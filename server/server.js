@@ -41,7 +41,7 @@ app.use('/images', express.static('upload/images'));
 app.post('/upload', upload.single('product'), (req, res) => {
     res.json({
         success: 1,
-        imageUrl: `http://localhost${port}/images/${req.file.filename}`,
+        imageUrl: `http://localhost:${port}/images/${req.file.filename}`,
     });
 });
 

@@ -48,6 +48,9 @@ export default function AddProduct() {
 
     const addProduct = async () => {
         setLoading(true);
+        setError(null);
+        setSuccessMessage(null);
+
         const formData = new FormData();
         formData.append('product', image);
 
@@ -60,11 +63,11 @@ export default function AddProduct() {
                 body: formData,
             });
 
-            const uploadResult = await uploadResponse.json();
-
             if (!uploadResponse.ok) {
                 throw new Error(errMsg.uploadImage);
             }
+
+            const uploadResult = await uploadResponse.json();
 
             const product = {
                 ...productDetails,
@@ -80,11 +83,11 @@ export default function AddProduct() {
                 body: JSON.stringify(product),
             });
 
-            const productResult = await productResponse.json();
-
             if (!productResponse.ok) {
                 throw new Error(errMsg.createProduct);
             }
+
+            const productResult = await productResponse.json();
 
             if (productResult.success) {
                 setSuccessMessage('Product added successfully!');
