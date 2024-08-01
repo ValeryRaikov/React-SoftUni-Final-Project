@@ -12,7 +12,6 @@ export default function NotFound() {
                 <img src={not_found} alt="" />
                 <h3>Oops, the page you are looking for doesn't exist!</h3>
                 <button onClick={() => navigate('/add-product')}>Go back</button>
-                <hr />
             </div>
         </div>
     );
