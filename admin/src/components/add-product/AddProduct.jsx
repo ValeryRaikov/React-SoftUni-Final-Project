@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './AddProduct.css';
 import upload_area from '../assets/upload_area.svg';
@@ -14,6 +15,7 @@ export default function AddProduct() {
         newPrice: '',
         oldPrice: '',
     });
+    const navigate = useNavigate();
 
     const imageHandler = (e) => {
         setImage(e.target.files[0]);
@@ -44,7 +46,8 @@ export default function AddProduct() {
 
         if (result.success) {
             product.image = result.imageUrl;
-            console.log(product);
+        } else {
+            navigate('/');
         }
     }
 
