@@ -7,9 +7,11 @@ import AddProduct from '../add-product/AddProduct';
 import ListProduct from '../list-product/ListProduct';
 import NotFound from '../not-found/NotFound';
 import Home from '../home/Home';
+import EditProduct from '../edit-product/EditProduct';
+import DeleteProduct from '../delete-product/DeleteProduct';
 
 export default function Admin() {
-    
+
     function RedirectToAdmin() {
         const navigate = useNavigate();
     
@@ -28,7 +30,10 @@ export default function Admin() {
                 <Route path='/' element={<RedirectToAdmin />}/>
                 <Route path='/admin' element={<Home />}/>
                 <Route path='/add-product' element={<AddProduct />} />
-                <Route path='/list-products' element={<ListProduct />} />
+                <Route path='/list-products' element={<ListProduct />}>
+                    <Route path='edit/:productId' element={<EditProduct />} />
+                    <Route path='delete/:productId' element={<DeleteProduct />} />
+                </Route>
                 <Route path='/*' element={<NotFound />} />
             </Routes>
         </div>
