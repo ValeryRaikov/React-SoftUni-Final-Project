@@ -27,7 +27,25 @@ export default function AddProduct() {
     }
 
     const addProduct = async () => {
+        const product = productDetails;
 
+        const formData = new FormData();
+        formData.append('product', image);
+
+        const response = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+            },
+            body: formData,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            product.image = result.imageUrl;
+            console.log(product);
+        }
     }
 
     return (
@@ -49,7 +67,8 @@ export default function AddProduct() {
                         value={productDetails.oldPrice}  
                         onChange={changeHandler} 
                         type="text" 
-                        name="old-price" id="Type here..." 
+                        name="oldPrice" 
+                        placeholder="Type here..." 
                     />
                 </div>
                 <div className="add-product-itemfield">
@@ -58,7 +77,8 @@ export default function AddProduct() {
                         value={productDetails.newPrice} 
                         onChange={changeHandler} 
                         type="text" 
-                        name="new-price" id="Type here..." 
+                        name="newPrice" 
+                        placeholder="Type here..." 
                     />
                 </div>
             </div>
@@ -78,8 +98,9 @@ export default function AddProduct() {
             <div className="add-product-itemfield">
                 <label htmlFor="file-input">
                     <img src={image 
-                        ? URL.createObjectURL(image) 
-                        : upload_area} alt="" className="add-product-thumnail-img" />
+                        ? URL.createObjectURL(image)
+                        : upload_area
+                    } alt="" className="add-product-thumnail-img" />
                 </label>
                 <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
             </div>

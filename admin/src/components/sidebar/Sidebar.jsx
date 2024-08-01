@@ -13,7 +13,7 @@ export default function Sidebar() {
     return (
         <div className="sidebar">
             {sidebarLinks.map(link => (
-                <Link to={link.path} key="//TODO" style={{textDecoration: "none"}}>
+                <Link to={link.path} key={link.path} style={{textDecoration: "none"}}>
                     <div className="sidebar-item">
                         <img src={link.icon} alt="" />
                         <p>{link.label}</p>

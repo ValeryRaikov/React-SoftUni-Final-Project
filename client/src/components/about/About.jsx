@@ -7,7 +7,7 @@ const sidebarLinks = [
     { path: "products", label: "Products" },
     { path: "offices", label: "Offices" },
     { path: "about-us", label: "About Us" },
-    { path: "contact", label: "Contact" }
+    { path: "contact", label: "Contact" },
 ];
 
 export default function About() {
