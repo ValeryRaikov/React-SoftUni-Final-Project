@@ -1,0 +1,8 @@
+@import url('/styles/base.css');
+
+.home h1 {
+    margin: 50px 150px;
+    text-align: center;
+    font-size: 70px;
+    color: #555;
+}
