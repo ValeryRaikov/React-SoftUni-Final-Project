@@ -1,15 +1,9 @@
 import { useState } from 'react';
 
-import './AddProduct.css';
-import upload_area from '../assets/upload_area.svg';
+import { errMsg, BASE_URL } from '../utils';
 
-const BASE_URL = 'http://localhost:3030';
-
-const errMsg = {
-    createProduct: 'Failed to create product.',
-    uploadImage: 'Failed to upload product image to the server.',
-    unexpected: 'An unexpected error occurred. Please try again later.',
-};
+import '../ProductForm.css';
+import upload_area from '../../assets/upload_area.svg';
 
 export default function AddProduct() {
     const [image, setImage] = useState(null);
@@ -103,19 +97,19 @@ export default function AddProduct() {
     };
 
     return (
-        <form className="add-product" onSubmit={addProduct}>
-            <div className="add-product-itemfield">
-                <p>Product title</p>
+        <form className="product" onSubmit={addProduct}>
+            <div className="product-itemfield">
+                <p>Product name</p>
                 <input
                     value={productDetails.name}
                     onChange={changeHandler}
                     type="text"
                     name="name"
-                    placeholder="Type here..."
+                    placeholder="Type  here..."
                 />
             </div>
-            <div className="add-product-price">
-                <div className="add-product-itemfield">
+            <div className="product-price">
+                <div className="product-itemfield">
                     <p>Price</p>
                     <input
                         value={productDetails.oldPrice}
@@ -125,7 +119,7 @@ export default function AddProduct() {
                         placeholder="Type here..."
                     />
                 </div>
-                <div className="add-product-itemfield">
+                <div className="product-itemfield">
                     <p>Offer Price</p>
                     <input
                         value={productDetails.newPrice}
@@ -136,30 +130,30 @@ export default function AddProduct() {
                     />
                 </div>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <p>Product Category</p>
                 <select
                     value={productDetails.category}
                     onChange={changeHandler}
                     name="category"
-                    className="add-product-selector"
+                    className="product-selector"
                 >
                     <option value="women">Women</option>
                     <option value="men">Men</option>
                     <option value="kids">Kids</option>
                 </select>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <label htmlFor="file-input">
                     <img
                         src={image ? URL.createObjectURL(image) : upload_area}
                         alt="Product Thumbnail"
-                        className="add-product-thumbnail-img"
+                        className="product-thumbnail-img"
                     />
                 </label>
                 <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
             </div>
-            <button onClick={addProduct} className="add-product-btn" disabled={loading}>
+            <button onClick={addProduct} className="product-btn" disabled={loading}>
                 {loading ? 'Adding...' : 'Add'}
             </button>
 

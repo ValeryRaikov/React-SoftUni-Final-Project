@@ -1,4 +1,4 @@
-import './ListProductItem.css';
+import '../ProductDisplay.css';
 
 export default function ListProductItem({
     id,

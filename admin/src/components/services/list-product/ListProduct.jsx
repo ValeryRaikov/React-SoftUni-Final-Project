@@ -1,15 +1,10 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import ListProductItem from '../list-product-item/ListProductItem';
-import './ListProduct.css';
+import { errMsg, BASE_URL } from '../utils';
 
-const BASE_URL = 'http://localhost:3030/all-products';
-
-const errMsg = {
-    fecthProducts: 'Failed to fetch products.',
-    unexpected: 'An unexpected error occurred. Please try again later.',
-};
+import '../ProductDisplay.css';
 
 export default function ListProduct() {
     const [allProducts, setAllProducts] = useState([]);
@@ -23,7 +18,7 @@ export default function ListProduct() {
             setError(null);
 
             try {
-                const response = await fetch(BASE_URL);
+                const response = await fetch(`${BASE_URL}/all-products`);
 
                 if (!response.ok) {
                     throw new Error(errMsg.fecthProducts);

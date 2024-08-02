@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import './EditProduct.css';
+import { errMsg, BASE_URL } from '../utils';
 
-const BASE_URL = 'http://localhost:3030';
-
-const errMsg = {
-    fecthProduct: 'Failed to fetch product.',
-    updateProduct: 'Failed to update product.',
-    unexpected: 'An unexpected error occurred. Please try again later.',
-}
+import '../ProductForm.css';
 
 export default function EditProduct() {
     const { productId } = useParams(); 
@@ -106,9 +100,9 @@ export default function EditProduct() {
     }
 
     return (
-        <form className="add-product" onSubmit={submitHandler}>
-            <div className="add-product-itemfield">
-                <p>Product title</p>
+        <form className="product" onSubmit={submitHandler}>
+            <div className="product-itemfield">
+                <p>Product name</p>
                 <input
                     value={product.name}
                     onChange={changeHandler}
@@ -116,8 +110,8 @@ export default function EditProduct() {
                     name="name"
                 />
             </div>
-            <div className="add-product-price">
-                <div className="add-product-itemfield">
+            <div className="product-price">
+                <div className="product-itemfield">
                     <p>Price</p>
                     <input
                         value={product.oldPrice}
@@ -126,7 +120,7 @@ export default function EditProduct() {
                         name="oldPrice"
                     />
                 </div>
-                <div className="add-product-itemfield">
+                <div className="product-itemfield">
                     <p>Offer Price</p>
                     <input
                         value={product.newPrice}
@@ -136,31 +130,36 @@ export default function EditProduct() {
                     />
                 </div>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <p>Product Category</p>
                 <select
                     value={product.category}
                     onChange={changeHandler}
                     name="category"
-                    className="add-product-selector"
+                    className="product-selector"
                 >
                     <option value="women">Women</option>
                     <option value="men">Men</option>
                     <option value="kids">Kids</option>
                 </select>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <label htmlFor="file-input">
                     <img
                         src={image ? URL.createObjectURL(image) : product.image}
                         alt="Product Thumbnail"
-                        className="add-product-thumbnail-img"
+                        className="product-thumbnail-img"
                     />
                 </label>
                 <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
             </div>
-            <button onClick={submitHandler} className="add-product-btn" disabled={loading}>
-                {loading ? 'Updating...' : 'Update'}
+            <button 
+                onClick={submitHandler} 
+                className="product-btn" 
+                style={{backgroundColor: "#0f7e09"}}
+                disabled={loading}
+            >
+                {loading ? 'Editting...' : 'Edit'}
             </button>
 
             {error && <p className="error-message">{error}</p>}

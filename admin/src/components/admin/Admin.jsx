@@ -3,12 +3,12 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import './Admin.css';
 import Sidebar from '../sidebar/Sidebar';
-import AddProduct from '../add-product/AddProduct';
-import ListProduct from '../list-product/ListProduct';
 import NotFound from '../not-found/NotFound';
 import Home from '../home/Home';
-import EditProduct from '../edit-product/EditProduct';
-import DeleteProduct from '../delete-product/DeleteProduct';
+import AddProduct from '../services/add-product/AddProduct';
+import ListProduct from '../services/list-product/ListProduct';
+import EditProduct from '../services/edit-product/EditProduct';
+import DeleteProduct from '../services/delete-product/DeleteProduct';
 
 export default function Admin() {
 

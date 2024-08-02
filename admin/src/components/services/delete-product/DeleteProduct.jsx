@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:3030';
+import { errMsg, BASE_URL } from '../utils';
 
-const errMsg = {
-    fetchProduct: 'Failed to fetch product.',
-    deleteProduct: 'Failed to delete product.',
-    unexpected: 'An unexpected error occurred. Please try again later.',
-};
+import '../ProductForm.css';
 
 export default function DeleteProduct() {
     const { productId } = useParams();
@@ -72,9 +68,9 @@ export default function DeleteProduct() {
     };
 
     return (
-        <form className="add-product" onSubmit={deleteHandler}>
-            <div className="add-product-itemfield">
-                <p>Product title</p>
+        <form className="product" onSubmit={deleteHandler}>
+            <div className="product-itemfield">
+                <p>Product name</p>
                 <input
                     value={product.name}
                     type="text"
@@ -83,8 +79,8 @@ export default function DeleteProduct() {
                     disabled
                 />
             </div>
-            <div className="add-product-price">
-                <div className="add-product-itemfield">
+            <div className="product-price">
+                <div className="product-itemfield">
                     <p>Price</p>
                     <input
                         value={product.oldPrice}
@@ -94,7 +90,7 @@ export default function DeleteProduct() {
                         disabled
                     />
                 </div>
-                <div className="add-product-itemfield">
+                <div className="product-itemfield">
                     <p>Offer Price</p>
                     <input
                         value={product.newPrice}
@@ -105,12 +101,12 @@ export default function DeleteProduct() {
                     />
                 </div>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <p>Product Category</p>
                 <select
                     value={product.category}
                     name="category"
-                    className="add-product-selector"
+                    className="product-selector"
                     disabled
                 >
                     <option value="women">Women</option>
@@ -118,18 +114,23 @@ export default function DeleteProduct() {
                     <option value="kids">Kids</option>
                 </select>
             </div>
-            <div className="add-product-itemfield">
+            <div className="product-itemfield">
                 <label htmlFor="file-input">
                     <img
                         src={product.image}
                         alt="Product Thumbnail"
-                        className="add-product-thumbnail-img"
+                        className="product-thumbnail-img"
                     />
                 </label>
                 <input type="file" name="image" id="file-input" hidden disabled />
             </div>
-            <button className="add-product-btn" disabled={loading}>
-                {loading ? 'Deleting...' : 'Delete'}
+            <button 
+                onClick={deleteHandler} 
+                className="product-btn" 
+                style={{backgroundColor: "#ff0000"}}
+                disabled={loading}
+            >
+                {loading ? 'Removing...' : 'Remove'}
             </button>
 
             {error && <p className="error-message">{error}</p>}
