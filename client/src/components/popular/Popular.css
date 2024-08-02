@@ -28,3 +28,10 @@
     display: flex;
     gap: 30px;
 }
+
+.error-message {
+    padding-top: 100px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ff0000;
+}

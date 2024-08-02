@@ -21,7 +21,7 @@ export default function ListProduct() {
                 const response = await fetch(`${BASE_URL}/all-products`);
 
                 if (!response.ok) {
-                    throw new Error(errMsg.fecthProducts);
+                    throw new Error(errMsg.fetchProducts);
                 }
 
                 const result = await response.json();

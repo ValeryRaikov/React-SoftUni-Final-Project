@@ -15,10 +15,10 @@ export default function Item({
             <p>{name}</p>
             <div className="item-prices">
                 <div className="item-price-new">
-                    {newPrice}
+                    ${newPrice}
                 </div>
                 <div className="item-price-old">
-                    {oldPrice}
+                    ${oldPrice}
                 </div>
             </div>
         </div>
