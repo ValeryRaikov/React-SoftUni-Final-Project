@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import './ListProduct.css';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ListProductItem from '../list-product-item/ListProductItem';
+import './ListProduct.css';
 
 const BASE_URL = 'http://localhost:3030/all-products';
 
@@ -14,6 +15,7 @@ export default function ListProduct() {
     const [allProducts, setAllProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -38,9 +40,17 @@ export default function ListProduct() {
         })();
     }, []);
 
+    const editClickHandler = (id) => {
+        navigate(`/update-product/${id}`);
+    }
+
+    const deleteClickHandler = (id) => {
+        navigate(`/remove-product/${id}`);
+    }
+
     return (
         <div className="list-product">
-            <h1>Add Product</h1>
+            <h1>All Products</h1>
             <div className="list-product-format-main">
                 <p>Products</p>
                 <p>Title</p>
@@ -58,7 +68,12 @@ export default function ListProduct() {
                     ? <p className="error-message">{error}</p>
                     : allProducts.length > 0 
                     ? allProducts.map(product => (
-                        <ListProductItem key={product.id} {...product} />
+                        <ListProductItem 
+                            key={product.id} 
+                            {...product} 
+                            onEdit={editClickHandler}
+                            onDelete={deleteClickHandler}
+                        />
                     ))
                     : <p className="no-products-message">No products available.</p>
                 }

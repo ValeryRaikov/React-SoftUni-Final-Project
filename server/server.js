@@ -120,7 +120,6 @@ app.put('/update-product/:id', async (req, res) => {
                 category: req.body.category,
                 newPrice: req.body.newPrice,
                 oldPrice: req.body.oldPrice,
-                available: req.body.available,
             }
         },
         { new: true }
@@ -133,7 +132,7 @@ app.put('/update-product/:id', async (req, res) => {
 });
 
 // Schema for Deleting Products
-app.post('/remove-product', async (req, res) => {
+app.delete('/remove-product/:id', async (req, res) => {
     await Product.findOneAndDelete({id: req.params.id});
     console.log('Removed');
     res.json({

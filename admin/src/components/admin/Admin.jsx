@@ -30,10 +30,9 @@ export default function Admin() {
                 <Route path='/' element={<RedirectToAdmin />}/>
                 <Route path='/admin' element={<Home />}/>
                 <Route path='/add-product' element={<AddProduct />} />
-                <Route path='/list-products' element={<ListProduct />}>
-                    <Route path='edit/:productId' element={<EditProduct />} />
-                    <Route path='delete/:productId' element={<DeleteProduct />} />
-                </Route>
+                <Route path='/list-products' element={<ListProduct />} />
+                <Route path='/update-product/:productId' element={<EditProduct />} />
+                <Route path='/remove-product/:productId' element={<DeleteProduct />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
         </div>

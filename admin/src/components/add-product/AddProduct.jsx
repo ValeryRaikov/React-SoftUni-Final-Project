@@ -103,7 +103,7 @@ export default function AddProduct() {
     };
 
     return (
-        <div className="add-product">
+        <form className="add-product" onSubmit={addProduct}>
             <div className="add-product-itemfield">
                 <p>Product title</p>
                 <input
@@ -154,7 +154,7 @@ export default function AddProduct() {
                     <img
                         src={image ? URL.createObjectURL(image) : upload_area}
                         alt="Product Thumbnail"
-                        className="add-product-thumnail-img"
+                        className="add-product-thumbnail-img"
                     />
                 </label>
                 <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
@@ -165,6 +165,6 @@ export default function AddProduct() {
 
             {error && <p className="error-message">{error}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}
-        </div>
+        </form>
     );
 }

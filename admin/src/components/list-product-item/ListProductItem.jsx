@@ -1,11 +1,14 @@
 import './ListProductItem.css';
 
 export default function ListProductItem({
+    id,
     name,
     image,
     category,
     newPrice,
     oldPrice,
+    onEdit,
+    onDelete,
 }) {
     return (
         <div className="list-product-format-main list-product-format">
@@ -14,8 +17,8 @@ export default function ListProductItem({
             <p>${oldPrice}</p>
             <p>${newPrice}</p>
             <p>{category}</p>
-            <button className="edit-btn">Edit</button>
-            <button className="delete-btn">Remove</button>
+            <button className="edit-btn" onClick={() => onEdit(id)}>Edit</button>
+            <button className="delete-btn" onClick={() => onDelete(id)}>Remove</button>
         </div>
     );
 }
