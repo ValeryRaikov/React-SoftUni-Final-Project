@@ -15,7 +15,7 @@ export default function Product() {
         <div>
             <Breadcrum {...product} />
             <ProductDisplay {...product} />
-            <DescriptionBox />
+            <DescriptionBox {...product} />
         </div>
     );
 }

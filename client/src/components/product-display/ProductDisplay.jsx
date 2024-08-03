@@ -8,6 +8,7 @@ export default function ProductDisplay({
     id,
     name,
     image,
+    category,
     newPrice,
     oldPrice,
 }) {
@@ -53,8 +54,8 @@ export default function ProductDisplay({
                     </div>
                 </div>
                 <button onClick={() => addToCart(id)}>Add to cart</button>
-                <p className="display-right-category"><span>Category: </span>Women T-Shirt, Crop-Top</p>
-                <p className="display-right-category"><span>Tags: </span>Women T-Shirt, Crop-Top</p>
+                <p className="display-right-category"><span>Category: </span>{category} clothing</p>
+                <p className="display-right-category"><span>Tags: </span>{category} clothing</p>
             </div>
         </div>
     );

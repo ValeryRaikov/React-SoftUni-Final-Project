@@ -12,7 +12,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
     font-weight: 600;
     width: 170px;
     height: 70px;
@@ -27,7 +26,33 @@
 .description-box-description {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
+    font-size: 20px;
     border: 1px solid #d0d0d0;
     padding: 45px;
+}
+
+.title,
+.warning-message {
+    font-weight: 600;
+}
+
+.title {
+    padding-right: 6px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    padding-right: 3px;
+}
+
+.new-price {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.in-stock {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0d8102;
 }
