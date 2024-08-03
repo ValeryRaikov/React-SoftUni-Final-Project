@@ -1,15 +1,24 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { ShopContext } from '../../context/ShopContext';
+
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import cart_icon from '../assets/cart_icon.png';
-import { ShopContext } from '../../context/ShopContext';
 
 export default function Navbar() {
+    const { clearCart } = useContext(ShopContext);
+
     const navigate = useNavigate();
     const [menu, setMenu] = useState('shop');
     const { getTotalCartItems } = useContext(ShopContext);
+
+    const handleLogout = () => {
+        localStorage.removeItem('auth-token');
+        clearCart(); 
+        navigate('/');
+    };
 
     return (
          <div className='navbar'>
@@ -43,10 +52,7 @@ export default function Navbar() {
                     {menu === 'about' ? <hr /> : <></>}
                 </li>
                 {localStorage.getItem('auth-token')
-                    ? (<button onClick={() => {
-                        localStorage.removeItem('auth-token');
-                        navigate('/');
-                    }}>
+                    ? (<button onClick={handleLogout}>
                         Logout
                     </button>
                     )

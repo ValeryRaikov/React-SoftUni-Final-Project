@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Registration.css';
@@ -13,12 +13,15 @@ export default function Registration() {
         username: '',
         email: '',
         password: '',
+        agree: false,
     });
 
     const changeHandler = (e) => {
         setFormData({
             ...formData, 
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.type === 'checkbox' 
+                ? e.target.checked 
+                : e.target.value,
         });
     }
 
@@ -27,14 +30,22 @@ export default function Registration() {
             setError('Username is required');
             return false;
         }
+
         if (formData.email.trim() === '') {
             setError('Email is required');
             return false;
         }
+
         if (formData.password.trim() === '') {
             setError('Password is required');
             return false;
         }
+
+        if (!formData.agree) {
+            setError('You must agree to the terms of use & privacy policy.');
+            return false;
+        }
+
         return true;
     };
 
@@ -54,7 +65,8 @@ export default function Registration() {
             });
 
             if (!response.ok) {
-                throw new Error('Login Error!');
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.errors || 'Login Error!');
             }
 
             const result = await response.json();
@@ -86,7 +98,8 @@ export default function Registration() {
             });
 
             if (!response.ok) {
-                throw new Error('SignUp Error!');
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.errors || 'SignUp Error!');
             }
 
             const result = await response.json();
@@ -108,10 +121,7 @@ export default function Registration() {
                 <div className="registration-header-box">
                     <h1>{state}</h1>
                     {error 
-                        ? <p className="error-message">{state === 'Sign Up' 
-                            ? 'Error Signing up!'
-                            : 'Error Logging in!'
-                        }</p> 
+                        ? <p className="error-message">{error}</p> 
                         : <></>
                     }
                 </div>
@@ -143,11 +153,20 @@ export default function Registration() {
                 </div>
                 <button onClick={() => state === 'Login' ? login(): signup()}>Continue</button>
                 {state === 'Sign Up' 
-                    ? <p className="registration-login">Already have an account? <span onClick={() => setState('Login')}>Login here</span></p>
-                    : <p className="registration-login">Create an account <span onClick={() => setState('Sign Up')}>Click here</span></p>
+                    ? <p className="registration-login">Already have an account? 
+                        <span onClick={() => setState('Login')}>Login here</span>
+                    </p>
+                    : <p className="registration-login">Create an account 
+                        <span onClick={() => setState('Sign Up')}>Click here</span>
+                    </p>
                 }
                 <div className="registration-agree">
-                    <input type="checkbox" name="" id="" />
+                    <input 
+                        checked={formData.agree}
+                        onChange={changeHandler} 
+                        type="checkbox" 
+                        name="agree" 
+                    />
                     <p>By continuing, I agree to the terms of use & privacypolicy.</p>
                 </div>
             </div>
