@@ -1,11 +1,14 @@
-import { useState, useEffect, createContext } from "react";
+import { AuthContext } from "./AuthContext";
+
+import { useState, useEffect, createContext, useContext } from "react";
 
 const BASE_URL = 'http://localhost:3030';
 
 export const ShopContext = createContext(null);
 
-const ShopContextProvider = (props) => {
+export default function ShopContextProvider(props) {
     const [allProducts, setAllProducts] = useState([]);
+    const { isAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
         (async () => {
@@ -20,7 +23,7 @@ const ShopContextProvider = (props) => {
 
                 setAllProducts(result);
 
-                if (localStorage.getItem('auth-token')) {
+                if (isAuthenticated) {
                     try {
                         const getCartResponse = await fetch(`${BASE_URL}/get-cart`, {
                             method: 'POST',
@@ -47,7 +50,7 @@ const ShopContextProvider = (props) => {
                 console.error(err.message);
             }
         })();
-    }, []);
+    }, [isAuthenticated]);
 
     useEffect(() => {
         if (allProducts.length > 0) {
@@ -71,9 +74,14 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
 
     const addToCart = async (itemId) => {
+        if (!isAuthenticated) {
+            alert('Please login to purchase');
+            return;
+        }
+
         setCartItems(prev => ({...prev, [itemId]: prev[itemId] + 1}));
 
-        if (localStorage.getItem('auth-token')) {
+        if (isAuthenticated) {
             try {
                 const response = await fetch(`${BASE_URL}/add-to-cart`, {
                     method: 'POST',
@@ -96,9 +104,14 @@ const ShopContextProvider = (props) => {
     }
 
     const removeFromCart = async (itemId) => {
+        if (!isAuthenticated) {
+            alert('Please login to access this page');
+            return;
+        }
+
         setCartItems(prev => ({...prev, [itemId]: prev[itemId] - 1}));
 
-        if (localStorage.getItem('auth-token')) {
+        if (isAuthenticated) {
             try {
                 const response = await fetch(`${BASE_URL}/remove-from-cart`, {
                     method: 'POST',
@@ -159,5 +172,3 @@ const ShopContextProvider = (props) => {
         </ShopContext.Provider>
     )
 }
-
-export default ShopContextProvider;
