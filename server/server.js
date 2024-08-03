@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
-const { type } = require('os');
 
 app.use(express.json());
 app.use(cors());
@@ -157,7 +156,6 @@ app.get('/product/:id', async (req, res) => {
 });
 
 // Schema for creating User model
-
 const Users = mongoose.model('Users', {
     name: {
         type: String
@@ -247,4 +245,20 @@ app.post('/login', async (req, res) => {
             errors: 'Wrong Email',
         })
     }
+});
+
+// Creating Endpoint for newest collection data
+app.get('/new-collection', async (req, res) => {
+    const products = await Product.find({});
+    const newCollection = products.slice(1).slice(-8);
+    console.log('New Collection fetched');
+    res.send(newCollection);
+});
+
+// Creating Endpoint for popular in women category
+app.get('/popular-in-women' , async (req, res) => {
+    const products = await Product.find({category: 'women'});
+    const popular = products.slice(0, 4);
+    console.log('Popular in women fetched');
+    res.send(popular);
 });

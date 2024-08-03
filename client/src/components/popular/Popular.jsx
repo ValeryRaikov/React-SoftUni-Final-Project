@@ -8,7 +8,7 @@ import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 const BASE_URL = 'http://localhost:3030';
 
 export default function Popular() {
-    const [allProducts, setAllProducts] = useState([]);
+    const [popularProducts, setPopularProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ export default function Popular() {
             setError(null);
 
             try {
-                const response = await fetch(`${BASE_URL}/all-products`);
+                const response = await fetch(`${BASE_URL}/popular-in-women`);
 
                 if (!response.ok) {
                     throw new Error('Error fetching products from the server!');
@@ -26,7 +26,7 @@ export default function Popular() {
 
                 const result = await response.json();
 
-                setAllProducts(result);
+                setPopularProducts(result);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -42,7 +42,7 @@ export default function Popular() {
             {loading ? <LoadingSpinner /> :
                 error ? <p className="error-message">{error}</p> : (
                 <div className="popular-item">
-                    {allProducts.map((item) => <Item key={item.id} {...item} />)}
+                    {popularProducts.map((item) => <Item key={item.id} {...item} />)}
                 </div>
             )}
         </div>

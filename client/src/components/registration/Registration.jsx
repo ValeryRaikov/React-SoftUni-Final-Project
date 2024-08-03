@@ -22,11 +22,59 @@ export default function Registration() {
         });
     }
 
+    const validateForm = () => {
+        if (state === 'Sign Up' && formData.username.trim() === '') {
+            setError('Username is required');
+            return false;
+        }
+        if (formData.email.trim() === '') {
+            setError('Email is required');
+            return false;
+        }
+        if (formData.password.trim() === '') {
+            setError('Password is required');
+            return false;
+        }
+        return true;
+    };
+
     const login = async () => {
-        
+        if (!validateForm()) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${BASE_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/form-data',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Login Error!');
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+                localStorage.setItem('auth-token', result.token);
+                navigate('/');
+            } else {
+                setError(result.errors);
+            }
+        } catch (err) {
+            setError(err.message);
+        }
     }
 
     const signup = async () => {
+        if (!validateForm()) {
+            return;
+        }
+
         try {
             const response = await fetch(`${BASE_URL}/signup`, {
                 method: 'POST',
@@ -47,7 +95,7 @@ export default function Registration() {
                 localStorage.setItem('auth-token', result.token);
                 navigate('/');
             } else {
-                setError('Some error!');
+                setError(result.errors);
             }
         } catch (err) {
             setError(err.message);

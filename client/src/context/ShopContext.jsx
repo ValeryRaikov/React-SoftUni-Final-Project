@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import all_products from '../components/assets/all_product';
+
+const BASE_URL = 'http://localhost:3030';
 
 export const ShopContext = createContext(null);
 
@@ -7,7 +8,21 @@ const ShopContextProvider = (props) => {
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(() => {
-        setAllProducts(all_products);
+        (async () => {
+            try {
+                const response = await fetch(`${BASE_URL}/all-products`);
+
+                if (!response.ok) {
+                    throw new Error('Error fetching products from the server');
+                }
+
+                const result = await response.json();
+
+                setAllProducts(result);
+            } catch (err) {
+                console.error(err.message);
+            }
+        })();
     }, []);
 
     useEffect(() => {
@@ -58,7 +73,14 @@ const ShopContextProvider = (props) => {
         return totalItems;
     }
 
-    const contextValue = { allProducts, cartItems, addToCart, removeFromCart, getTotalCartAmount, getTotalCartItems };
+    const contextValue = {
+        allProducts, 
+        cartItems, 
+        addToCart, 
+        removeFromCart, 
+        getTotalCartAmount, 
+        getTotalCartItems,
+    };
 
     return (
         <ShopContext.Provider value={contextValue} >

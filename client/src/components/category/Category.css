@@ -41,3 +41,12 @@
     font-size: 18px;
     font-weight: 500;
 }
+
+.error-message {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.loading-spinner {
+    text-align: center;
+}

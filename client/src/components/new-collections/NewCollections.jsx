@@ -8,7 +8,7 @@ import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 const BASE_URL = 'http://localhost:3030';
 
 export default function NewCollections() {
-    const [allProducts, setAllProducts] = useState([]);
+    const [newProducts, setNewProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ export default function NewCollections() {
             setError(null);
 
             try {
-                const response = await fetch(`${BASE_URL}/all-products`);
+                const response = await fetch(`${BASE_URL}/new-collection`);
 
                 if (!response.ok) {
                     throw new Error('Error fetching products from the server!');
@@ -26,7 +26,7 @@ export default function NewCollections() {
 
                 const result = await response.json();
 
-                setAllProducts(result);
+                setNewProducts(result);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -41,8 +41,8 @@ export default function NewCollections() {
             <hr />
             {loading ? <LoadingSpinner /> :
                 error ? <p className="error-message">{error}</p> : (
-                <div className="popular-item">
-                    {allProducts.map((item) => <Item key={item.id} {...item} />)}
+                <div className="collections">
+                    {newProducts.map((item) => <Item key={item.id} {...item} />)}
                 </div>
             )}
         </div>
