@@ -9,14 +9,15 @@ import logo from '../assets/logo.png';
 import cart_icon from '../assets/cart_icon.png';
 
 export default function Navbar() {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, handleLogout } = useContext(AuthContext);
     const { clearCart, getTotalCartItems } = useContext(ShopContext);
 
     const navigate = useNavigate();
     const [menu, setMenu] = useState('shop');
 
-    const handleLogout = () => {
+    const logoutHandler = () => {
         localStorage.removeItem('auth-token');
+        handleLogout();
         clearCart(); 
         navigate('/');
     };
@@ -53,7 +54,7 @@ export default function Navbar() {
                     {menu === 'about' ? <hr /> : <></>}
                 </li>
                 {localStorage.getItem('auth-token')
-                    ? (<button onClick={handleLogout}>
+                    ? (<button onClick={logoutHandler}>
                         Logout
                     </button>
                     )

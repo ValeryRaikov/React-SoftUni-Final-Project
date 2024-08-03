@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import WarningModal from "../components/warning-modal/WarningModal";
@@ -11,13 +11,16 @@ export default function AuthContextProvider(props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState({ title: '', children: null });
 
+    useEffect(() => {
+        setIsAuthenticated(!!localStorage.getItem('auth-token'));
+    }, []);
+
     const handleLogin = () => {
         setIsAuthenticated(true);
         setIsModalVisible(false);
     }
     
     const handleLogout = () => {
-        localStorage.removeItem('auth-token');
         setIsAuthenticated(false);
     }
 

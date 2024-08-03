@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 import './Registration.css';
 
 const BASE_URL = 'http://localhost:3030';
 
 export default function Registration() {
+    const { handleLogin } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [state, setState] = useState('Login');
@@ -73,6 +76,7 @@ export default function Registration() {
 
             if (result.success) {
                 localStorage.setItem('auth-token', result.token);
+                handleLogin();
                 navigate('/');
             } else {
                 setError(result.errors);
@@ -106,6 +110,7 @@ export default function Registration() {
 
             if (result.success) {
                 localStorage.setItem('auth-token', result.token);
+                handleLogin();
                 navigate('/');
             } else {
                 setError(result.errors);
