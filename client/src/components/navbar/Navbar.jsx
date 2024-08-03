@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { AuthContext } from '../../context/AuthContext';
 import { ShopContext } from '../../context/ShopContext';
 
 import './Navbar.css';
@@ -8,11 +9,11 @@ import logo from '../assets/logo.png';
 import cart_icon from '../assets/cart_icon.png';
 
 export default function Navbar() {
-    const { clearCart } = useContext(ShopContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { clearCart, getTotalCartItems } = useContext(ShopContext);
 
     const navigate = useNavigate();
     const [menu, setMenu] = useState('shop');
-    const { getTotalCartItems } = useContext(ShopContext);
 
     const handleLogout = () => {
         localStorage.removeItem('auth-token');
@@ -61,10 +62,12 @@ export default function Navbar() {
                     </Link>
                     )
                 }
+                {isAuthenticated && (<>
                 <Link to='/cart'>
                     <img src={cart_icon} alt="" />
                 </Link>
                 <div className="nav-cart-count">{getTotalCartItems()}</div>
+                </>)}
             </div>
          </div>
     );
