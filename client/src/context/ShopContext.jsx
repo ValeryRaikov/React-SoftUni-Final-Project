@@ -1,6 +1,6 @@
-import { AuthContext } from "./AuthContext";
-
 import { useState, useEffect, createContext, useContext } from "react";
+
+import { AuthContext } from "./AuthContext";
 
 const BASE_URL = 'http://localhost:3030';
 
@@ -8,7 +8,12 @@ export const ShopContext = createContext(null);
 
 export default function ShopContextProvider(props) {
     const [allProducts, setAllProducts] = useState([]);
-    const { isAuthenticated } = useContext(AuthContext);
+    const { 
+        isAuthenticated, 
+        showModal, 
+        handleLoginClick, 
+        handleGoBackClick, 
+    } = useContext(AuthContext);
 
     useEffect(() => {
         (async () => {
@@ -75,7 +80,15 @@ export default function ShopContextProvider(props) {
 
     const addToCart = async (itemId) => {
         if (!isAuthenticated) {
-            alert('Please login to purchase');
+            showModal('Login required', (
+                <div>
+                    <p>Please login to purchase items.</p>
+                    <div className="btn-container">
+                        <button onClick={() => handleGoBackClick()}>Go Back</button>
+                        <button onClick={() => handleLoginClick()}>Login</button>
+                    </div>
+                </div>
+            ));
             return;
         }
 
@@ -105,7 +118,6 @@ export default function ShopContextProvider(props) {
 
     const removeFromCart = async (itemId) => {
         if (!isAuthenticated) {
-            alert('Please login to access this page');
             return;
         }
 

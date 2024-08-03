@@ -1,0 +1,53 @@
+@import url('/styles/base.css');
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 35px;
+    font-weight: 600;
+    color: #454545;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.modal-content button {
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    background-color: #ff4141;
+    color: #fff;
+    margin-top: 20px;
+    padding: 15px 20px;
+}
