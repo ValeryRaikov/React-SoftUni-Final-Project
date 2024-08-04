@@ -42,7 +42,7 @@ export default function ProductDisplay({
                     <div className="display-right-price-new">${newPrice}</div>
                 </div>
                 <div className="display-right-description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quaerat dignissimos quis, nihil sit perspiciatis neque. Nostrum nisi reprehenderit sit labore animi ipsum provident, deserunt, placeat ut corporis rem? Delectus!
+                    {`${name} is the perfect ${category} clothing for everyday. Made of fine materials and 100% cotton, our clothes are suitable for everyone. Now, don't miss the opportunity and get it for only ${newPrice}!`}
                 </div>
                 <div className="display-right-size">
                     <h1>Select Size</h1>

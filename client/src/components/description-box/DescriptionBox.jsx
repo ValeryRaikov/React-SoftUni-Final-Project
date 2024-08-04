@@ -5,7 +5,6 @@ import './DescriptionBox.css';
 
 export default function DescriptionBox({
     name,
-    image,
     category,
     newPrice,
     oldPrice,
