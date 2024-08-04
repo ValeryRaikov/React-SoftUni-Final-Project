@@ -1,0 +1,73 @@
+@import url('/styles/base.css');
+
+.admin-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
+}
+
+.admin-login h1 {
+    font-size: 60px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.admin-login .error {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff0000;
+    margin-bottom: 40px;
+}
+
+.admin-login form {
+    background: #ececec;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-login form div {
+    margin-bottom: 20px;
+}
+
+.admin-login form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #555;
+}
+
+.admin-login form input {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-login form button {
+    width: 100px;
+    align-self: center;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.admin-login form button:hover {
+    background-color: #0056b3;
+}

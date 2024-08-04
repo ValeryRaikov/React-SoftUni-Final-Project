@@ -1,12 +1,33 @@
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+
 import './Navbar.css';
+
 import nav_logo from '../assets/nav-logo.svg';
-import nav_profile from '../assets/nav-profile.svg';
 
 export default function Navbar() {
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     return (
         <div className="navbar">
             <img src={nav_logo} alt="" className="nav-logo" />
-            <img src={nav_profile} alt="" className="nav-profile" />
+            <div className="nav-login">
+                {isAuthenticated
+                    ? (<button onClick={() => {
+                        setIsAuthenticated(false);
+                        navigate('/');
+                    }}>
+                        Logout
+                    </button>
+                    )
+                    : (<Link to='/admin-login'>
+                        <button>Login</button>
+                    </Link>
+                    )
+                }
+            </div>
         </div>
     );
 }

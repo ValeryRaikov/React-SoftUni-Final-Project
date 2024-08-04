@@ -81,3 +81,29 @@
     font-size: 20px;
     font-weight: 600;
 }
+
+.error-box {
+    margin: 80px 0 0 180px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ededed;
+}
+
+.error-box h1 {
+    font-size: 60px;
+    font-weight: 600;
+    color: #555;
+    text-transform: capitalize;
+    padding-bottom: 50px;
+}
+
+.error-box button {
+    padding: 15px 40px;
+    background-color: #ff4141;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+}

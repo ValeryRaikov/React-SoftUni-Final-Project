@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
 
 import { errMsg, BASE_URL } from '../utils';
 
 import '../ProductForm.css';
 
 export default function EditProduct() {
+    const { isAuthenticated } = useContext(AuthContext);
     const { productId } = useParams(); 
     const navigate = useNavigate();
     const [image, setImage] = useState(null);
@@ -100,70 +102,80 @@ export default function EditProduct() {
     }
 
     return (
-        <form className="product" onSubmit={submitHandler}>
-            <div className="product-itemfield">
-                <p>Product name</p>
-                <input
-                    value={product.name}
-                    onChange={changeHandler}
-                    type="text"
-                    name="name"
-                />
-            </div>
-            <div className="product-price">
-                <div className="product-itemfield">
-                    <p>Price</p>
-                    <input
-                        value={product.oldPrice}
-                        onChange={changeHandler}
-                        type="text"
-                        name="oldPrice"
-                    />
-                </div>
-                <div className="product-itemfield">
-                    <p>Offer Price</p>
-                    <input
-                        value={product.newPrice}
-                        onChange={changeHandler}
-                        type="text"
-                        name="newPrice"
-                    />
-                </div>
-            </div>
-            <div className="product-itemfield">
-                <p>Product Category</p>
-                <select
-                    value={product.category}
-                    onChange={changeHandler}
-                    name="category"
-                    className="product-selector"
-                >
-                    <option value="women">Women</option>
-                    <option value="men">Men</option>
-                    <option value="kids">Kids</option>
-                </select>
-            </div>
-            <div className="product-itemfield">
-                <label htmlFor="file-input">
-                    <img
-                        src={image ? URL.createObjectURL(image) : product.image}
-                        alt="Product Thumbnail"
-                        className="product-thumbnail-img"
-                    />
-                </label>
-                <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
-            </div>
-            <button 
-                onClick={submitHandler} 
-                className="product-btn" 
-                style={{backgroundColor: "#0f7e09"}}
-                disabled={loading}
-            >
-                {loading ? 'Editting...' : 'Edit'}
-            </button>
-
-            {error && <p className="error-message">{error}</p>}
-            {successMessage && <p className="success-message">{successMessage}</p>}
-        </form>
+        <>
+            {!isAuthenticated 
+                ? (<div className="error-box">
+                    <h1>Login to access admin rights</h1>
+                    <Link to="/admin-login">
+                        <button>Login</button>
+                    </Link>
+                </div>)
+                : (<form className="product" onSubmit={submitHandler}>
+                    <div className="product-itemfield">
+                        <p>Product name</p>
+                        <input
+                            value={product.name}
+                            onChange={changeHandler}
+                            type="text"
+                            name="name"
+                        />
+                    </div>
+                    <div className="product-price">
+                        <div className="product-itemfield">
+                            <p>Price</p>
+                            <input
+                                value={product.oldPrice}
+                                onChange={changeHandler}
+                                type="text"
+                                name="oldPrice"
+                            />
+                        </div>
+                        <div className="product-itemfield">
+                            <p>Offer Price</p>
+                            <input
+                                value={product.newPrice}
+                                onChange={changeHandler}
+                                type="text"
+                                name="newPrice"
+                            />
+                        </div>
+                    </div>
+                    <div className="product-itemfield">
+                        <p>Product Category</p>
+                        <select
+                            value={product.category}
+                            onChange={changeHandler}
+                            name="category"
+                            className="product-selector"
+                        >
+                            <option value="women">Women</option>
+                            <option value="men">Men</option>
+                            <option value="kids">Kids</option>
+                        </select>
+                    </div>
+                    <div className="product-itemfield">
+                        <label htmlFor="file-input">
+                            <img
+                                src={image ? URL.createObjectURL(image) : product.image}
+                                alt="Product Thumbnail"
+                                className="product-thumbnail-img"
+                            />
+                        </label>
+                        <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
+                    </div>
+                    <button 
+                        onClick={submitHandler} 
+                        className="product-btn" 
+                        style={{backgroundColor: "#0f7e09"}}
+                        disabled={loading}
+                    >
+                        {loading ? 'Editting...' : 'Edit'}
+                    </button>
+        
+                    {error && <p className="error-message">{error}</p>}
+                    {successMessage && <p className="success-message">{successMessage}</p>}
+                </form>)
+            }
+        </>
     );
 }

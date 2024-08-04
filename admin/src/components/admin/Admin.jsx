@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import './Admin.css';
+
+import Login from '../login/Login';
 import Sidebar from '../sidebar/Sidebar';
 import NotFound from '../not-found/NotFound';
 import Home from '../home/Home';
@@ -29,6 +31,7 @@ export default function Admin() {
             <Routes>
                 <Route path='/' element={<RedirectToAdmin />}/>
                 <Route path='/admin' element={<Home />}/>
+                <Route path='/admin-login' element={<Login />} />
                 <Route path='/add-product' element={<AddProduct />} />
                 <Route path='/list-products' element={<ListProduct />} />
                 <Route path='/update-product/:productId' element={<EditProduct />} />

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
 
 import ListProductItem from '../list-product-item/ListProductItem';
 import { errMsg, BASE_URL } from '../utils';
@@ -7,6 +8,7 @@ import { errMsg, BASE_URL } from '../utils';
 import '../ProductDisplay.css';
 
 export default function ListProduct() {
+    const { isAuthenticated } = useContext(AuthContext);
     const [allProducts, setAllProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -44,36 +46,46 @@ export default function ListProduct() {
     }
 
     return (
-        <div className="list-product">
-            <h1>All Products</h1>
-            <div className="list-product-format-main">
-                <p>Products</p>
-                <p>Title</p>
-                <p>Old Price</p>
-                <p>New Price</p>
-                <p>Category</p>
-                <p>Edit</p>
-                <p>Remove</p>
-            </div>
-            <div className="list-product-all-products">
-                <hr />
-                {loading 
-                    ? <p className="loading-message">Loading...</p>
-                    : error 
-                    ? <p className="error-message">{error}</p>
-                    : allProducts.length > 0 
-                    ? allProducts.map(product => (
-                        <ListProductItem 
-                            key={product.id} 
-                            {...product} 
-                            onEdit={editClickHandler}
-                            onDelete={deleteClickHandler}
-                        />
-                    ))
-                    : <p className="no-products-message">No products available.</p>
-                }
-            </div>
-            <hr />
-        </div>
+        <>
+            {!isAuthenticated 
+                ? (<div className="error-box">
+                    <h1>Login to access admin rights</h1>
+                    <Link to="/admin-login">
+                        <button>Login</button>
+                    </Link>
+                </div>)
+                : (<div className="list-product">
+                    <h1>All Products</h1>
+                    <div className="list-product-format-main">
+                        <p>Products</p>
+                        <p>Title</p>
+                        <p>Old Price</p>
+                        <p>New Price</p>
+                        <p>Category</p>
+                        <p>Edit</p>
+                        <p>Remove</p>
+                    </div>
+                    <div className="list-product-all-products">
+                        <hr />
+                        {loading 
+                            ? <p className="loading-message">Loading...</p>
+                            : error 
+                            ? <p className="error-message">{error}</p>
+                            : allProducts.length > 0 
+                            ? allProducts.map(product => (
+                                <ListProductItem 
+                                    key={product.id} 
+                                    {...product} 
+                                    onEdit={editClickHandler}
+                                    onDelete={deleteClickHandler}
+                                />
+                            ))
+                            : <p className="no-products-message">No products available.</p>
+                        }
+                    </div>
+                    <hr />
+                </div>)
+            }
+        </>
     );
 }

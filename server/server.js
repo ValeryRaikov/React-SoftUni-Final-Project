@@ -180,6 +180,26 @@ const Users = mongoose.model('Users', {
     },
 });
 
+// Create Endpoint for logging as Admin
+const admins = {
+    'admin1@gmail.com': 'admin_pass',
+    'admin2@gmail.com': 'admin_1234',
+};
+
+app.post('/admin-login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (admins[email] && admins[email] === password) {
+         return res.status(200).json({
+            message: 'Login successful', 
+        });
+    } 
+
+    res.json({ 
+        message: 'Invalid email or password',
+    });
+});
+
 // Creating Endpoint for registering the user
 app.post('/signup', async (req, res) => {
     const check = await Users.findOne({email: req.body.email});
