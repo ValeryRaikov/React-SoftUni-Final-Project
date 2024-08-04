@@ -1,10 +1,44 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import './CartItem.css';
 import remove_icon from '../assets/cart_cross_icon.png';
 
+const promocodes = {
+    LOYAL5: 0.95,  // 5% discount
+    HappY10: 0.90,  // 10% discount
+    MaGiC20_: 0.80,  // 20% discount
+}
+
 export default function CartItem() {
     const { allProducts, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
+    const [promocode, setPromocode] = useState('');
+    const [discount, setDiscount] = useState(1);
+    const [totalPrice, setTotalPrice] = useState(getTotalCartAmount());
+
+    useEffect(() => {
+        setTotalPrice(getTotalCartAmount() * discount);
+    }, [discount, getTotalCartAmount]);
+
+    const handlePromocodeChange = (e) => {
+        setPromocode(e.target.value);
+    };
+
+    const handlePromocodeSubmit = () => {
+        let isValidCode = false;
+
+        for (let code in promocodes) {
+            if (promocode === code) {
+                setDiscount(promocodes[code]);
+                isValidCode = true;
+                break;
+            }
+        }
+
+        if (!isValidCode) {
+            setPromocode('Invalid promo code!');
+            setDiscount(1);
+        }
+    }
 
     return (
         <div className="cart-items">
@@ -39,6 +73,7 @@ export default function CartItem() {
                         </div>
                     );
                 }
+
                 return null;
             })}
             <div className="cart-items-down">
@@ -57,7 +92,7 @@ export default function CartItem() {
                         <hr />
                         <div className="cart-items-total-item">
                             <h3>Total</h3>
-                            <h3>${getTotalCartAmount()}</h3>
+                            <h3>${totalPrice}</h3>
                         </div>
                     </div>
                     <button>Proceed to checkout</button>
@@ -65,8 +100,14 @@ export default function CartItem() {
                 <div className="cart-items-promocode">
                     <p>If you have a promo code, Enter it here...</p>
                     <div className="cart-items-promobox">
-                        <input type="text" placeholder="Promo Code" />
-                        <button>Submit</button>
+                        <input 
+                            value={promocode} 
+                            onChange={handlePromocodeChange} 
+                            type="text" 
+                            name="promocode"
+                            placeholder="Promo Code"
+                        />
+                        <button onClick={handlePromocodeSubmit}>Submit</button>
                     </div>
                 </div>
             </div>
