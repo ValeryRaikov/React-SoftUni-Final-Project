@@ -143,7 +143,18 @@ app.delete('/remove-product/:id', async (req, res) => {
 
 // API for getting All Products
 app.get('/all-products', async (req, res) => {
-    const products = await Product.find({});
+    // Add Sorting logic
+    const sortOption = req.query.sort || 'id-asc';
+
+    const sortCriteria = sortOption === 'newPrice-desc'
+        ? { newPrice: -1 } 
+        : sortOption === 'id-desc'
+        ? { _id: -1 } 
+        : sortOption === 'newPrice-asc'
+        ? { newPrice: 1 } 
+        : { _id: 1 }; 
+
+    const products = await Product.find({}).sort(sortCriteria);
     console.log('All products fetched');
     res.send(products);
 });

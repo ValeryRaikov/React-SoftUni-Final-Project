@@ -38,7 +38,7 @@ Client Side Documentation
 
 #### Description
 
-The client-side is the primary interface for customers, designed to facilitate an engaging shopping experience. Both logged-in and guest users can browse products, but only authenticated users can access detailed product information and manage their shopping cart.
+The client-side is the primary interface for customers, designed to facilitate an engaging shopping experience. Both logged-in and guest users can browse products as well as sorting them, but only authenticated users can access detailed product information and manage their shopping cart.
 
 #### Setup
 

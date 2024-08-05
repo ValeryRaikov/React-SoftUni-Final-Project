@@ -17,6 +17,12 @@
     border: 1px solid #888;
 }
 
+.category-sort select {
+    font-size: 16px;
+    text-align: center;
+    border: none;
+}
+
 .category-indexSort p span {
     font-weight: 600;
 }
