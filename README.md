@@ -113,3 +113,34 @@ Setup Project locally
 4.  Set up environment variables for database connection and JWT secret
 5.  Run `node server.js` to launch the server
 6.  If everything is setup properly you should see **_Server running on port 3030_** and should be able to go to http://localhost:3030/
+
+Test Project
+------------
+
+## Client login
+
+There are three users already set up in the database for login. 
+
+1.  Email: `valery@gmail.com`, Pass: `12345678`
+2.  Email: `ivan@abv.bg`, Pass: `admin`
+3.  Email: `peter@gmail.com`, Pass: `peter`
+
+## Client sign up
+
+You can sign up with any account of you choice by providing username, email and password. 
+
+*  After successful user authentication via login or sign up you should be able to access your personalized shopping cart,allowing you to add or remove products and view additional product details information.
+
+## Admin login
+
+There are two admins set up on the server for admin login.
+
+1.  Email: `admin1@gmail.com`, Pass: `admin_pass`
+2.  Email: `admin2@gmail.com`, Pass: `admin_1234`
+
+You can login only with one of these credentials and sign up is not allowed. 
+*  After successful login, you should be able to perform CRUD operations on the products.
+
+Note
+--
+I recommend you to preview the project on `1440px` resolution dimensions or more
