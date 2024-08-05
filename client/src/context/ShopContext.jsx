@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, createContext, useContext, useMemo } from "react";
 
 import { AuthContext } from "./AuthContext";
 
@@ -168,7 +168,7 @@ export default function ShopContextProvider(props) {
         return totalItems;
     }
 
-    const contextValue = {
+    const contextValue = useMemo(() => ({
         allProducts, 
         cartItems, 
         clearCart,
@@ -176,7 +176,7 @@ export default function ShopContextProvider(props) {
         removeFromCart, 
         getTotalCartAmount, 
         getTotalCartItems,
-    };
+    }), [allProducts, cartItems]);
 
     return (
         <ShopContext.Provider value={contextValue} >
