@@ -38,11 +38,11 @@ export default function Login() {
     }
 
     const submitHandler = async (e) => {
-        if(!validateForm) {
+        e.preventDefault();
+
+        if(!validateForm()) {
             return;
         }
-
-        e.preventDefault();
 
         try {
             const response = await fetch(`${BASE_URL}/admin-login`, {

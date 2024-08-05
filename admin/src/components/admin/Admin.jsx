@@ -11,6 +11,7 @@ import AddProduct from '../services/add-product/AddProduct';
 import ListProduct from '../services/list-product/ListProduct';
 import EditProduct from '../services/edit-product/EditProduct';
 import DeleteProduct from '../services/delete-product/DeleteProduct';
+import ProtectedRoutes from '../common/ProtectedRoutes';
 
 export default function Admin() {
 
@@ -32,10 +33,12 @@ export default function Admin() {
                 <Route path='/' element={<RedirectToAdmin />}/>
                 <Route path='/admin' element={<Home />}/>
                 <Route path='/admin-login' element={<Login />} />
-                <Route path='/add-product' element={<AddProduct />} />
-                <Route path='/list-products' element={<ListProduct />} />
-                <Route path='/update-product/:productId' element={<EditProduct />} />
-                <Route path='/remove-product/:productId' element={<DeleteProduct />} />
+                <Route element={<ProtectedRoutes />}>
+                    <Route path='/add-product' element={<AddProduct />} />
+                    <Route path='/list-products' element={<ListProduct />} />
+                    <Route path='/update-product/:productId' element={<EditProduct />} />
+                    <Route path='/remove-product/:productId' element={<DeleteProduct />} />
+                </Route>
                 <Route path='/*' element={<NotFound />} />
             </Routes>
         </div>

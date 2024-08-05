@@ -17,6 +17,7 @@ import ProductsAbout from './components/product-about/ProductsAbout';
 import Offices from './components/offices/Offices';
 import AboutUs from './components/about-us/AboutUs';
 import Contact from './components/contact/Contact';
+import ProtectedRoutes from './components/common/ProtectedRoutes';
 
 function App() {
     const location = useLocation();
@@ -42,7 +43,9 @@ function App() {
                     <Route path='contact' element={<Contact />} />
                 </Route>
                 <Route path='/login' element={<Registration />} />
-                <Route path='/cart' element={<Cart />} />
+                <Route element={<ProtectedRoutes />}>
+                    <Route path='/cart' element={<Cart />} />
+                </Route>
                 <Route path='/*' element={<NotFound />} />
             </Routes>
 

@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 
+import Warning from '../../warning/Warning';
 import { errMsg, BASE_URL } from '../utils';
 
 import '../ProductForm.css';
@@ -43,7 +43,9 @@ export default function AddProduct() {
         setImage(null);
     };
 
-    const addProduct = async () => {
+    const addProduct = async (e) => {
+        e.preventDefault(); 
+
         setLoading(true);
         setError(null);
         setSuccessMessage(null);
@@ -102,12 +104,7 @@ export default function AddProduct() {
     return (
         <>
             {!isAuthenticated 
-                ? (<div className="error-box">
-                    <h1>Login to access admin rights</h1>
-                    <Link to="/admin-login">
-                        <button>Login</button>
-                    </Link>
-                </div>)
+                ? <Warning />
                 : (<form className="product" onSubmit={addProduct}>
                     <div className="product-itemfield">
                         <p>Product name</p>

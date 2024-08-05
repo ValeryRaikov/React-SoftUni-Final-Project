@@ -203,10 +203,11 @@ app.post('/admin-login', (req, res) => {
     if (admins[email] && admins[email] === password) {
          return res.status(200).json({
             message: 'Login successful', 
+            token: 'admin-token',
         });
     } 
 
-    res.json({ 
+    res.status(401).json({ 
         message: 'Invalid email or password',
     });
 });

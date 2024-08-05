@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 
+import Warning from '../../warning/Warning';
 import { errMsg, BASE_URL } from '../utils';
 
 import '../ProductForm.css';
-
 
 export default function DeleteProduct() {
     const { isAuthenticated } = useContext(AuthContext);
@@ -73,12 +73,7 @@ export default function DeleteProduct() {
     return (
         <>
             {!isAuthenticated 
-                ? (<div className="error-box">
-                    <h1>Login to access admin rights</h1>
-                    <Link to="/admin-login">
-                        <button>Login</button>
-                    </Link>
-                </div>)
+                ? <Warning />
                 : (<form className="product" onSubmit={deleteHandler}>
                     <div className="product-itemfield">
                         <p>Product name</p>

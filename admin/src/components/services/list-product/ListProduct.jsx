@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 
 import ListProductItem from '../list-product-item/ListProductItem';
-import { errMsg, BASE_URL } from '../utils';
+import Warning from '../../warning/Warning';
 
+import { errMsg, BASE_URL } from '../utils';
 import '../ProductDisplay.css';
 
 export default function ListProduct() {
@@ -48,12 +49,7 @@ export default function ListProduct() {
     return (
         <>
             {!isAuthenticated 
-                ? (<div className="error-box">
-                    <h1>Login to access admin rights</h1>
-                    <Link to="/admin-login">
-                        <button>Login</button>
-                    </Link>
-                </div>)
+                ? <Warning />
                 : (<div className="list-product">
                     <h1>All Products</h1>
                     <div className="list-product-format-main">
