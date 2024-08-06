@@ -8,7 +8,20 @@ const path = require('path');
 const cors = require('cors');
 
 app.use(express.json());
-app.use(cors());
+
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true, 
+}));
 
 // Database Connection
 mongoose.connect('mongodb+srv://test-user:test-user@react-final-project.dh35a7p.mongodb.net/react-final-project');
@@ -78,6 +91,10 @@ const Product = mongoose.model('Product', {
     available: {
         type: Boolean,
         default: true,
+    },
+    likes: {
+        type: Number,
+        default: 0,
     },
 });
 
@@ -164,6 +181,36 @@ app.get('/product/:id', async (req, res) => {
     const product = await Product.findOne({id: req.params.id});
     console.log('Product fetched');
     res.send(product);
+});
+
+// API for liking a product
+app.post('/product/:id/like', async (req, res) => {
+    const product = await Product.findOneAndUpdate(
+        { id: req.params.id },
+        { $inc: { likes: 1 } },
+        { new: true }
+    );
+
+    if (!product) {
+        return res.status(404).send({ error: 'Product not found' });
+    }
+
+    res.send({ likes: product.likes });
+});
+
+// API for disliking a product
+app.post('/product/:id/dislike', async (req, res) => {
+    const product = await Product.findOneAndUpdate(
+        { id: req.params.id },
+        { $inc: { likes: -1 } },
+        { new: true }
+    );
+
+    if (!product) {
+        return res.status(404).send({ error: 'Product not found' });
+    }
+    
+    res.send({ likes: product.likes });
 });
 
 // Schema for creating User model

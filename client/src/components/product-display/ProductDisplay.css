@@ -83,7 +83,13 @@
     cursor: pointer;
 }
 
-.display-right button {
+.display-right-btn-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.display-right-btn-box .add-btn {
     padding: 20px 40px;
     width: 200px;
     font-weight: 600;
@@ -96,8 +102,45 @@
     text-transform: uppercase;
 }
 
+.likes-btn-box {
+    display: flex;
+    gap: 30px;
+}
+
+.likes-btn-box button {
+    width: 85px;
+    padding: 10px;
+    margin-bottom: 30px;
+    background-color: #ccc;
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.like-btn:hover {
+    background-color: #009100;
+}
+
+.dislike-btn:hover {
+    background-color: #ff0000;
+}
+
+.likes {
+    font-size: 20px;
+}
+
+.likes span {
+    font-size: 22px;
+    font-weight: 700;
+}
+
 .display-right-category {
     margin-top: 10px;
+    text-transform: capitalize;
 }
 
 .display-right-category span {

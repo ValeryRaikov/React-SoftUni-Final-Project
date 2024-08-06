@@ -159,10 +159,10 @@ export default function Registration() {
                 <button onClick={() => state === 'Login' ? login(): signup()}>Continue</button>
                 {state === 'Sign Up' 
                     ? <p className="registration-login">Already have an account? 
-                        <span onClick={() => setState('Login')}>Login here</span>
+                        <span onClick={() => setState('Login')}> Login here</span>
                     </p>
                     : <p className="registration-login">Create an account 
-                        <span onClick={() => setState('Sign Up')}>Click here</span>
+                        <span onClick={() => setState('Sign Up')}> Click here</span>
                     </p>
                 }
                 <div className="registration-agree">

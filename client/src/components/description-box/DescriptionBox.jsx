@@ -17,7 +17,7 @@ export default function DescriptionBox({
         <div className="description-box">
             <div className="description-box-navigator">
                 <div className="description-box-nav-box">Description</div>
-                <div className="description-box-nav-box fade">Reviews (122)</div>
+                <div className="description-box-nav-box fade">Reviews</div>
             </div>
             <div className="description-box-description">
             {!isAuthenticated

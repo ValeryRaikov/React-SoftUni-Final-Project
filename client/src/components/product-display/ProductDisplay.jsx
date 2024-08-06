@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
+import useProductLikes  from '../../hooks/useProductLikes';
+
 import './ProductDisplay.css';
 import star_icon from '../assets/star_icon.png';
 import star_dull_icon from '../assets/star_dull_icon.png';
-import { useContext } from 'react';
-import { ShopContext } from '../../context/ShopContext';
 
 export default function ProductDisplay({ 
     id,
@@ -13,6 +16,13 @@ export default function ProductDisplay({
     oldPrice,
 }) {
     const { addToCart } = useContext(ShopContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { 
+        likes,
+        likeProduct, 
+        dislikeProduct, 
+        error,
+    } = useProductLikes(id, isAuthenticated);
 
     return (
         <div className="display">
@@ -35,7 +45,7 @@ export default function ProductDisplay({
                     <img src={star_icon} alt="" />
                     <img src={star_icon} alt="" />
                     <img src={star_dull_icon} alt="" />
-                    <p>(122)</p>
+                    <p>({likes})</p>
                 </div>
                 <div className="display-right-prices">
                     <div className="display-right-price-old">${oldPrice}</div>
@@ -53,7 +63,21 @@ export default function ProductDisplay({
                         <div>XL</div>
                     </div>
                 </div>
-                <button onClick={() => addToCart(id)}>Add to cart</button>
+                <div className="display-right-btn-box">
+                <button className="add-btn" onClick={() => addToCart(id)}>Add to cart</button>
+                    <div className="display-right-likes">
+                        {isAuthenticated && 
+                        <div className="likes-btn-box">
+                            <button className="like-btn" onClick={likeProduct}>Like</button>
+                            <button className="dislike-btn" onClick={dislikeProduct}>Dislike</button>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                {error && <p className="error-message">{error}</p>}
+
+                <p className="likes">Total likes: <span>{likes}</span></p>
                 <p className="display-right-category"><span>Category: </span>{category} clothing</p>
                 <p className="display-right-category"><span>Tags: </span>{category} clothing</p>
             </div>
