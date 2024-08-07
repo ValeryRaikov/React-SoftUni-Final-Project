@@ -1,38 +1,84 @@
-import './Offices.css';
+import React from 'react'
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { mapOptions } from '../../utils/mapConfig';
 
-export default function Offices() {
-    return (
-        <div className="offices">
-            <h2>Find Our Offices</h2>
-            <div className="offices-container">
-                <div className="offices-sofia">
-                    <h3>Sofia</h3>
-                    <div className="locations">
-                        <ul>
-                            <li><a href="#" target="_blank">Office 1</a></li>
-                            <li><a href="#" target="_blank">Office 2</a></li>
-                            <li><a href="#" target="_blank">Office 3</a></li>
-                        </ul>
-                    </div>
+const containerStyle = {
+  width: '1285px', // Align width to full page screen
+  height: '591px', // Align height to full page screen
+};
+
+const center = {
+  lat: 42.639113,
+  lng: 23.373163,
+}; // Center the map to point to Mladost 4
+
+const offices = [
+    {
+        name: "Main office",
+        location: {
+            lat: 42.638383,
+            lng: 23.379608,
+        },
+    },
+    {
+        name: "Second office",
+        location: {
+            lat: 42.673831,
+            lng: 23.319,
+        },
+    },
+    {
+        name: "Third office",
+        location: {
+            lat: 42.726164,
+            lng: 23.2925,
+        },
+    },
+    {
+        name: "Third office",
+        location: {
+            lat: 42.15,
+            lng: 24.749997,
+        },
+    },
+]; // Create dummy office locations 
+
+function Offices() {
+  const { isLoaded } = useJsApiLoader({
+    id: mapOptions.googleMapApiKey,
+    googleMapsApiKey: mapOptions.googleMapApiKey,
+  });
+
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map)
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, []);
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {offices.map(office => {
+            return (
+                <div key={office.location} >
+                    <Marker position={office.location} />
                 </div>
-                <div className="offices-plovdiv">
-                    <h3>Plovdiv</h3>
-                    <div className="locations">
-                        <ul>
-                            <li><a href="#" target="_blank">Office 1</a></li>
-                            <li><a href="#" target="_blank">Office 2</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="offices-burgas">
-                    <h3>Burgas</h3>
-                    <div className="locations">
-                        <ul>
-                            <li><a href="#" target="_blank">Office 1</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+            );
+        })}
+      </GoogleMap>
+  ) : <></>
 }
+
+export default React.memo(Offices);
