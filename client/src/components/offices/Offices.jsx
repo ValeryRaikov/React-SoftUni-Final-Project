@@ -35,7 +35,7 @@ const offices = [
         },
     },
     {
-        name: "Third office",
+        name: "Fourth office",
         location: {
             lat: 42.15,
             lng: 24.749997,
