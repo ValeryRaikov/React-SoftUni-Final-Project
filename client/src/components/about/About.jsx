@@ -1,4 +1,5 @@
 import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
+
 import './About.css';
 import hand_icon from '../assets/hand_icon.png';
 
@@ -11,10 +12,10 @@ const sidebarLinks = [
 ];
 
 export default function About() {
+    const navigate = useNavigate();
     const location = useLocation();
     const currentPath = location.pathname.split("/").pop() || 'company';
     const isSidebarLinkSelected = sidebarLinks.some(link => link.path === currentPath);
-    const navigate = useNavigate();
 
     return (
         <div className="about">

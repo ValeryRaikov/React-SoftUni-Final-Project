@@ -26,7 +26,7 @@ export default function CartItem() {
     const handlePromocodeSubmit = () => {
         let isValidCode = false;
 
-        for (let code in promocodes) {
+        for (const code in promocodes) {
             if (promocode === code) {
                 setDiscount(promocodes[code]);
                 isValidCode = true;

@@ -4,6 +4,7 @@ const BASE_URL = 'http://localhost:3030';
 
 export default function useProductLikes(productId, isAuthenticated) {
     const [likes, setLikes] = useState(0);
+    const [isliked, setIsLiked] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -18,6 +19,7 @@ export default function useProductLikes(productId, isAuthenticated) {
                 const result = await response.json();
 
                 setLikes(result.likes);
+                setError(null);
             } catch (err) {
                 setError('Failed to fetch likes');
             }
@@ -27,6 +29,11 @@ export default function useProductLikes(productId, isAuthenticated) {
     const likeProduct = async () => {
         if (!isAuthenticated) {
             setError('Please log in to like the product.');
+            return;
+        }
+
+        if (isliked) {
+            setError('You have already liked this product.');
             return;
         }
 
@@ -43,6 +50,8 @@ export default function useProductLikes(productId, isAuthenticated) {
             const result = await response.json();
 
             setLikes(result.likes);
+            setIsLiked(true);
+            setError(null);
         } catch (err) {
             setError(err.message);
         }
@@ -51,6 +60,11 @@ export default function useProductLikes(productId, isAuthenticated) {
     const dislikeProduct = async () => {
         if (!isAuthenticated) {
             setError('Please log in to dislike the product.');
+            return;
+        }
+
+        if (!isliked) {
+            setError('You have already disliked the product.');
             return;
         }
 
@@ -67,6 +81,8 @@ export default function useProductLikes(productId, isAuthenticated) {
             const result = await response.json();
 
             setLikes(result.likes);
+            setIsLiked(false);
+            setError(null);
         } catch (err) {
             setError(err.message);
         }
