@@ -92,7 +92,7 @@ export default function CartItem() {
                         <hr />
                         <div className="cart-items-total-item">
                             <h3>Total</h3>
-                            <h3>${totalPrice}</h3>
+                            <h3>${totalPrice.toFixed(2)}</h3>
                         </div>
                     </div>
                     <button>Proceed to checkout</button>
