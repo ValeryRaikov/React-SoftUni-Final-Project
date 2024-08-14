@@ -14,20 +14,23 @@ export default function Category({
     const [loading, setLoading] = useState(true);
     const [sortedProducts, setSortedProducts] = useState([]);
     const [sortOption, setSortOption] = useState('id-asc');
+    const [searchQuery, setSearchQuery] = useState('');  
+    const [searchTrigger, setSearchTrigger] = useState('');  
 
     useEffect(() => {
         (async () => {
             setLoading(true);
             if (allProducts.length > 0) {
-                sortProducts(sortOption);
+                sortProducts(sortOption, searchTrigger);  
             }
-            
             setLoading(false);
         })();
-    }, [allProducts, category, sortOption]);
+    }, [allProducts, category, sortOption, searchTrigger]);  
 
-    const sortProducts = (option) => {
-        let sorted = [...allProducts].filter(item => item.category === category);
+    const sortProducts = (option, searchQuery) => {
+        let sorted = [...allProducts]
+            .filter(item => item.category === category)
+            .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));  
         
         sorted.sort((a, b) => {
             if (option === 'id-asc') {
@@ -42,11 +45,18 @@ export default function Category({
         });
 
         setSortedProducts(sorted);
-        setLoading(false);
     };
 
     const onSortChange = (value) => {
         setSortOption(value);
+    };
+
+    const onSearchChange = (e) => {
+        setSearchQuery(e.target.value);  
+    };
+
+    const onSearchClick = () => {
+        setSearchTrigger(searchQuery); 
     };
 
     return (
@@ -56,6 +66,15 @@ export default function Category({
                 <p>
                     <span>Showing 1-12</span> out of 36 products
                 </p>
+                <div className="search-bar">
+                    <input 
+                        value={searchQuery} 
+                        onChange={onSearchChange} 
+                        type="text" 
+                        placeholder="Enter product name..."  
+                    />
+                    <button onClick={onSearchClick}>Search</button>  
+                </div>
                 <div className='category-sort'>
                     <label htmlFor="sort">Sort by: </label>
                     <select 
@@ -73,7 +92,7 @@ export default function Category({
             {loading 
                 ? <div className="loading-spinner"><LoadingSpinner /></div>
                 : !sortedProducts.length 
-                    ? <p className="error-message">Failed to fetch products</p>
+                    ? <p className="error-message">No products found</p>
                     : <div className="category-products">
                         {sortedProducts.map(item => (
                             <Item key={item.id} {...item} />

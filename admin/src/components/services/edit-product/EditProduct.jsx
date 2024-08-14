@@ -32,7 +32,7 @@ export default function EditProduct() {
                 const response = await fetch(`${BASE_URL}/product/${productId}`);
 
                 if (!response.ok) {
-                    throw new Error(errMsg.fecthProduct);
+                    throw new Error(errMsg.fetchProduct);
                 }
 
                 const result = await response.json();
