@@ -5,7 +5,7 @@ import './Popular.css';
 import Item from '../item/Item';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = 'https://react-softuni-final-project.onrender.com';  // 'http://localhost:3030';
 
 export default function Popular() {
     const [popularProducts, setPopularProducts] = useState([]);

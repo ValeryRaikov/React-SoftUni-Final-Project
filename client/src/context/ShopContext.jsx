@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, useContext, useMemo } from "react";
 
 import { AuthContext } from "./AuthContext";
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = 'https://react-softuni-final-project.onrender.com';  // 'http://localhost:3030';
 
 export const ShopContext = createContext(null);
 

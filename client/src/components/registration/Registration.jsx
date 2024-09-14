@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 import './Registration.css';
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = 'https://react-softuni-final-project.onrender.com';  // 'http://localhost:3030';
 
 export default function Registration() {
     const { handleLogin } = useContext(AuthContext);
