@@ -8,4 +8,4 @@ export const errMsg = {
     unexpected: 'An unexpected error occurred. Please try again later.',
 };
 
-export const BASE_URL = 'http://localhost:3030';
+export const BASE_URL = 'https://react-softuni-final-project.onrender.com';  // 'http://localhost:3030';

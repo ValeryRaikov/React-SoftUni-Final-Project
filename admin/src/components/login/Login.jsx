@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 import './Login.css';
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = 'https://react-softuni-final-project.onrender.com';  // 'http://localhost:3030';
 
 export default function Login() {
     const navigate = useNavigate();
