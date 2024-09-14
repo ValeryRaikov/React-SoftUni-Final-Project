@@ -144,3 +144,8 @@ You can login only with one of these credentials and sign up is not allowed.
 Note
 --
 I recommend you to preview the project on `1440px` resolution dimensions or more
+
+## Website deployed on Render
+
+- Client side: **[check here](https://react-softuni-final-project-client.onrender.com)**
+- Admin side: **[check here](https://react-softuni-final-project-admin.onrender.com)**
